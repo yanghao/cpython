@@ -1385,6 +1385,30 @@ main_loop:
             DISPATCH();
         }
 
+        case TARGET(LARROW): {
+            PyObject *right = POP();
+            PyObject *left = TOP();
+            PyObject *res = PyObject_LeftArrow(left, right);
+            Py_DECREF(left);
+            Py_DECREF(right);
+            SET_TOP(res);
+            if (res == NULL)
+                goto error;
+            DISPATCH();
+        }
+
+        case TARGET(RARROW): {
+            PyObject *right = POP();
+            PyObject *left = TOP();
+            PyObject *res = PyObject_RightArrow(left, right);
+            Py_DECREF(left);
+            Py_DECREF(right);
+            SET_TOP(res);
+            if (res == NULL)
+                goto error;
+            DISPATCH();
+        }
+
         case TARGET(BINARY_TRUE_DIVIDE): {
             PyObject *divisor = POP();
             PyObject *dividend = TOP();

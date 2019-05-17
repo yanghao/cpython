@@ -5052,6 +5052,8 @@ inherit_slots(PyTypeObject *type, PyTypeObject *base)
         COPYNUM(nb_index);
         COPYNUM(nb_matrix_multiply);
         COPYNUM(nb_inplace_matrix_multiply);
+        COPYNUM(nb_left_arrow);
+        COPYNUM(nb_right_arrow);
     }
 
     if (type->tp_as_async != NULL && base->tp_as_async != NULL) {
@@ -6230,6 +6232,8 @@ SLOT1BIN(slot_nb_add, nb_add, "__add__", "__radd__")
 SLOT1BIN(slot_nb_subtract, nb_subtract, "__sub__", "__rsub__")
 SLOT1BIN(slot_nb_multiply, nb_multiply, "__mul__", "__rmul__")
 SLOT1BIN(slot_nb_matrix_multiply, nb_matrix_multiply, "__matmul__", "__rmatmul__")
+SLOT1BIN(slot_nb_left_arrow, nb_left_arrow, "__larrow__", "__larrow__")
+SLOT1BIN(slot_nb_right_arrow, nb_right_arrow, "__rarrow__", "__rarrow__")
 SLOT1BIN(slot_nb_remainder, nb_remainder, "__mod__", "__rmod__")
 SLOT1BIN(slot_nb_divmod, nb_divmod, "__divmod__", "__rdivmod__")
 
@@ -6987,6 +6991,8 @@ static slotdef slotdefs[] = {
            "for use as an index into a list."),
     BINSLOT("__matmul__", nb_matrix_multiply, slot_nb_matrix_multiply,
             "@"),
+    BINSLOT("__larrow__", nb_left_arrow, slot_nb_left_arrow, "<-"),
+    BINSLOT("__rarrow__", nb_right_arrow, slot_nb_right_arrow, "->"),
     RBINSLOT("__rmatmul__", nb_matrix_multiply, slot_nb_matrix_multiply,
              "@"),
     IBSLOT("__imatmul__", nb_inplace_matrix_multiply, slot_nb_inplace_matrix_multiply,

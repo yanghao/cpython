@@ -985,6 +985,10 @@ get_operator(struct compiling *c, const node *n)
                 return (operator_ty)0;
             }
             return MatMult;
+	case LARROW:
+	    return LArrow;
+	case RARROW:
+	    return RArrow;
         case SLASH:
             return Div;
         case DOUBLESLASH:
