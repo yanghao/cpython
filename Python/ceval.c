@@ -1385,10 +1385,10 @@ main_loop:
             DISPATCH();
         }
 
-        case TARGET(LARROW): {
+        case TARGET(LASSIGN): {
             PyObject *right = POP();
             PyObject *left = TOP();
-            PyObject *res = PyObject_LeftArrow(left, right);
+            PyObject *res = PyObject_LeftAssign(left, right);
             Py_DECREF(left);
             Py_DECREF(right);
             SET_TOP(res);
@@ -1397,10 +1397,10 @@ main_loop:
             DISPATCH();
         }
 
-        case TARGET(RARROW): {
+        case TARGET(RASSIGN): {
             PyObject *right = POP();
             PyObject *left = TOP();
-            PyObject *res = PyObject_RightArrow(left, right);
+            PyObject *res = PyObject_RightAssign(left, right);
             Py_DECREF(left);
             Py_DECREF(right);
             SET_TOP(res);

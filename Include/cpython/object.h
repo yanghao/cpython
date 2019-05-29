@@ -134,8 +134,8 @@ typedef struct {
 
     binaryfunc nb_matrix_multiply;
     binaryfunc nb_inplace_matrix_multiply;
-    binaryfunc nb_left_arrow;
-    binaryfunc nb_right_arrow;
+    binaryfunc nb_left_assign;
+    binaryfunc nb_right_assign;
 } PyNumberMethods;
 
 typedef struct {

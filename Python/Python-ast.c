@@ -406,7 +406,7 @@ static PyTypeObject *operator_type;
 static PyObject *Add_singleton, *Sub_singleton, *Mult_singleton,
 *MatMult_singleton, *Div_singleton, *Mod_singleton, *Pow_singleton,
 *LShift_singleton, *RShift_singleton, *BitOr_singleton, *BitXor_singleton,
-*BitAnd_singleton, *FloorDiv_singleton, *LArrow_singleton, *RArrow_singleton;
+*BitAnd_singleton, *FloorDiv_singleton, *LAssign_singleton, *RAssign_singleton;
 static PyObject* ast2obj_operator(operator_ty);
 static PyTypeObject *Add_type;
 static PyTypeObject *Sub_type;
@@ -421,8 +421,8 @@ static PyTypeObject *BitOr_type;
 static PyTypeObject *BitXor_type;
 static PyTypeObject *BitAnd_type;
 static PyTypeObject *FloorDiv_type;
-static PyTypeObject *LArrow_type;
-static PyTypeObject *RArrow_type;
+static PyTypeObject *LAssign_type;
+static PyTypeObject *RAssign_type;
 static PyTypeObject *unaryop_type;
 static PyObject *Invert_singleton, *Not_singleton, *UAdd_singleton,
 *USub_singleton;
@@ -1074,14 +1074,14 @@ static int init_types(void)
     if (!FloorDiv_type) return 0;
     FloorDiv_singleton = PyType_GenericNew(FloorDiv_type, NULL, NULL);
     if (!FloorDiv_singleton) return 0;
-    LArrow_type = make_type("LArrow", operator_type, NULL, 0);
-    if (!LArrow_type) return 0;
-    LArrow_singleton = PyType_GenericNew(LArrow_type, NULL, NULL);
-    if (!LArrow_singleton) return 0;
-    RArrow_type = make_type("RArrow", operator_type, NULL, 0);
-    if (!RArrow_type) return 0;
-    RArrow_singleton = PyType_GenericNew(RArrow_type, NULL, NULL);
-    if (!RArrow_singleton) return 0;
+    LAssign_type = make_type("LAssign", operator_type, NULL, 0);
+    if (!LAssign_type) return 0;
+    LAssign_singleton = PyType_GenericNew(LAssign_type, NULL, NULL);
+    if (!LAssign_singleton) return 0;
+    RAssign_type = make_type("RAssign", operator_type, NULL, 0);
+    if (!RAssign_type) return 0;
+    RAssign_singleton = PyType_GenericNew(RAssign_type, NULL, NULL);
+    if (!RAssign_singleton) return 0;
     unaryop_type = make_type("unaryop", &AST_type, NULL, 0);
     if (!unaryop_type) return 0;
     if (!add_attributes(unaryop_type, NULL, 0)) return 0;
@@ -3799,12 +3799,12 @@ PyObject* ast2obj_operator(operator_ty o)
         case FloorDiv:
             Py_INCREF(FloorDiv_singleton);
             return FloorDiv_singleton;
-        case LArrow:
-            Py_INCREF(LArrow_singleton);
-            return LArrow_singleton;
-        case RArrow:
-            Py_INCREF(RArrow_singleton);
-            return RArrow_singleton;
+        case LAssign:
+            Py_INCREF(LAssign_singleton);
+            return LAssign_singleton;
+        case RAssign:
+            Py_INCREF(RAssign_singleton);
+            return RAssign_singleton;
         default:
             /* should never happen, but just in case ... */
             PyErr_Format(PyExc_SystemError, "unknown operator found");
@@ -7944,20 +7944,20 @@ obj2ast_operator(PyObject* obj, operator_ty* out, PyArena* arena)
         *out = FloorDiv;
         return 0;
     }
-    isinstance = PyObject_IsInstance(obj, (PyObject *)LArrow_type);
+    isinstance = PyObject_IsInstance(obj, (PyObject *)LAssign_type);
     if (isinstance == -1) {
         return 1;
     }
     if (isinstance) {
-        *out = LArrow;
+        *out = LAssign;
         return 0;
     }
-    isinstance = PyObject_IsInstance(obj, (PyObject *)RArrow_type);
+    isinstance = PyObject_IsInstance(obj, (PyObject *)RAssign_type);
     if (isinstance == -1) {
         return 1;
     }
     if (isinstance) {
-        *out = RArrow;
+        *out = RAssign;
         return 0;
     }
 
@@ -8962,9 +8962,9 @@ PyInit__ast(void)
         NULL;
     if (PyDict_SetItemString(d, "FloorDiv", (PyObject*)FloorDiv_type) < 0)
         return NULL;
-    if (PyDict_SetItemString(d, "LArrow", (PyObject*)LArrow_type) < 0) return
+    if (PyDict_SetItemString(d, "LAssign", (PyObject*)LAssign_type) < 0) return
         NULL;
-    if (PyDict_SetItemString(d, "RArrow", (PyObject*)RArrow_type) < 0) return
+    if (PyDict_SetItemString(d, "RAssign", (PyObject*)RAssign_type) < 0) return
         NULL;
     if (PyDict_SetItemString(d, "unaryop", (PyObject*)unaryop_type) < 0) return
         NULL;

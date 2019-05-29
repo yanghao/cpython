@@ -25,7 +25,7 @@ typedef enum _boolop { And=1, Or=2 } boolop_ty;
 
 typedef enum _operator { Add=1, Sub=2, Mult=3, MatMult=4, Div=5, Mod=6, Pow=7,
                          LShift=8, RShift=9, BitOr=10, BitXor=11, BitAnd=12,
-                         FloorDiv=13, LArrow=14, RArrow=15 } operator_ty;
+                         FloorDiv=13, LAssign=14, RAssign=15 } operator_ty;
 
 typedef enum _unaryop { Invert=1, Not=2, UAdd=3, USub=4 } unaryop_ty;
 

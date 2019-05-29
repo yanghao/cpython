@@ -193,10 +193,6 @@
 
    Token value for ``"->"``.
 
-.. data:: LARROW
-
-   Token value for ``"<-"``.
-
 .. data:: ELLIPSIS
 
    Token value for ``"..."``.
@@ -204,6 +200,14 @@
 .. data:: COLONEQUAL
 
    Token value for ``":="``.
+
+.. data:: RASSIGN
+
+   Token value for ``"==>"``.
+
+.. data:: LASSIGN
+
+   Token value for ``"<=="``.
 
 .. data:: OP
 

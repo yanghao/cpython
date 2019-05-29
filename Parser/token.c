@@ -58,9 +58,10 @@ const char * const _PyParser_TokenNames[] = {
     "AT",
     "ATEQUAL",
     "RARROW",
-    "LARROW",
     "ELLIPSIS",
     "COLONEQUAL",
+    "RASSIGN",
+    "LASSIGN",
     "OP",
     "AWAIT",
     "ASYNC",
@@ -155,7 +156,6 @@ PyToken_TwoChars(int c1, int c2)
         break;
     case '<':
         switch (c2) {
-        case '-': return LARROW;
         case '<': return LEFTSHIFT;
         case '=': return LESSEQUAL;
         case '>': return NOTEQUAL;
@@ -227,6 +227,20 @@ PyToken_ThreeChars(int c1, int c2, int c3)
         case '<':
             switch (c3) {
             case '=': return LEFTSHIFTEQUAL;
+            }
+            break;
+        case '=':
+            switch (c3) {
+            case '=': return LASSIGN;
+            }
+            break;
+        }
+        break;
+    case '=':
+        switch (c2) {
+        case '=':
+            switch (c3) {
+            case '>': return RASSIGN;
             }
             break;
         }

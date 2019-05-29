@@ -907,8 +907,8 @@ stack_effect(int opcode, int oparg, int jump)
         case BINARY_POWER:
         case BINARY_MULTIPLY:
         case BINARY_MATRIX_MULTIPLY:
-	case LARROW:
-	case RARROW:
+	case LASSIGN:
+	case RASSIGN:
         case BINARY_MODULO:
         case BINARY_ADD:
         case BINARY_SUBTRACT:
@@ -3319,10 +3319,10 @@ binop(struct compiler *c, operator_ty op)
         return BINARY_MULTIPLY;
     case MatMult:
         return BINARY_MATRIX_MULTIPLY;
-    case LArrow:
-	return LARROW;
-    case RArrow:
-	return RARROW;
+    case LAssign:
+	return LASSIGN;
+    case RAssign:
+	return RASSIGN;
     case Div:
         return BINARY_TRUE_DIVIDE;
     case Mod:

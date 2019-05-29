@@ -55,20 +55,21 @@ DOUBLESLASHEQUAL = 48
 AT = 49
 ATEQUAL = 50
 RARROW = 51
-LARROW = 52
-ELLIPSIS = 53
-COLONEQUAL = 54
-OP = 55
-AWAIT = 56
-ASYNC = 57
-TYPE_IGNORE = 58
-TYPE_COMMENT = 59
+ELLIPSIS = 52
+COLONEQUAL = 53
+RASSIGN = 54
+LASSIGN = 55
+OP = 56
+AWAIT = 57
+ASYNC = 58
+TYPE_IGNORE = 59
+TYPE_COMMENT = 60
 # These aren't used by the C tokenizer but are needed for tokenize.py
-ERRORTOKEN = 60
-COMMENT = 61
-NL = 62
-ENCODING = 63
-N_TOKENS = 64
+ERRORTOKEN = 61
+COMMENT = 62
+NL = 63
+ENCODING = 64
+N_TOKENS = 65
 # Special definitions for cooperation with parser
 NT_OFFSET = 256
 
@@ -105,12 +106,13 @@ EXACT_TOKEN_TYPES = {
     ':=': COLONEQUAL,
     ';': SEMI,
     '<': LESS,
-    '<-': LARROW,
     '<<': LEFTSHIFT,
     '<<=': LEFTSHIFTEQUAL,
     '<=': LESSEQUAL,
+    '<==': LASSIGN,
     '=': EQUAL,
     '==': EQEQUAL,
+    '==>': RASSIGN,
     '>': GREATER,
     '>=': GREATEREQUAL,
     '>>': RIGHTSHIFT,

@@ -151,10 +151,10 @@ class AugAssignTest(unittest.TestCase):
                 output.append("__imatmul__ called")
                 return self
 
-            def __larrow__(self, val):
-                output.append("__larrow__ called")
-            def __rarrow__(self, val):
-                output.append("__rarrow__ called")
+            def __lassign__(self, val):
+                output.append("__lassign__ called")
+            def __rassign__(self, val):
+                output.append("__rassign__ called")
 
             def __floordiv__(self, val):
                 output.append("__floordiv__ called")

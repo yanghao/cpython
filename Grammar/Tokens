@@ -51,9 +51,10 @@ DOUBLESLASHEQUAL        '//='
 AT                      '@'
 ATEQUAL                 '@='
 RARROW                  '->'
-LARROW                  '<-'
 ELLIPSIS                '...'
 COLONEQUAL              ':='
+RASSIGN                 '==>'
+LASSIGN                 '<=='
 
 OP
 AWAIT

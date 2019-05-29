@@ -1092,15 +1092,15 @@ INPLACE_BINOP(PyNumber_InPlaceSubtract, nb_inplace_subtract, nb_subtract, "-=")
 INPLACE_BINOP(PyNumber_InMatrixMultiply, nb_inplace_matrix_multiply, nb_matrix_multiply, "@=")
 
 PyObject *
-PyObject_LeftArrow(PyObject *v, PyObject *w)
+PyObject_LeftAssign(PyObject *v, PyObject *w)
 {
-    return binary_iop(v, w, NB_SLOT(nb_left_arrow), NB_SLOT(nb_left_arrow), "<-");
+    return binary_iop(v, w, NB_SLOT(nb_left_assign), NB_SLOT(nb_left_assign), "<==");
 }
 
 PyObject *
-PyObject_RightArrow(PyObject *v, PyObject *w)
+PyObject_RightAssign(PyObject *v, PyObject *w)
 {
-    return binary_iop(w, v, NB_SLOT(nb_right_arrow), NB_SLOT(nb_right_arrow), "->");
+    return binary_iop(w, v, NB_SLOT(nb_right_assign), NB_SLOT(nb_right_assign), "==>");
 }
 
 PyObject *
